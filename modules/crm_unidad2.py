@@ -131,3 +131,69 @@ if email_actualizado.endswith("@kizuna.com"):
     print(f"9. El email {email_actualizado} pertenece al dominio de la empresa.")
     
 print("-" * 50)
+
+# ============================================
+# LECCIÓN 5: Tuplas 
+# ============================================                          
+print(f"\n === Lección 5: Tuplas ===\n")
+
+#P1 - Definición de una Tupla aplicada al CRM (datos que no se cambiaran)
+PLATAFORMAS_VALIDAS = ("Instagram", "Facebook", "Youtube", "Tiktok")
+
+print(f"1. Plataformas válidas para el CRM: {(' | '.join(PLATAFORMAS_VALIDAS))}")
+print(f"2. Total de plataformas existentes: {len(PLATAFORMAS_VALIDAS)}")
+
+#P2 - Verificar si una plataforma es válida
+plataforma_buscador = "Telegram"           # pongo "Telegram"para provocar que se imprima else 
+
+if plataforma_buscador.lower() in [p.lower() for p in PLATAFORMAS_VALIDAS]:  
+    print(f"3. La plataforma '{plataforma_buscador}' se encuentra en el CRM.")
+else:
+    print(f"3. La plataforma '{plataforma_buscador}' NO está registrada en el CRM.")
+    
+    
+#P3 - Slicing: para obtener un rango o subtablas de plataformas existentes (por ejemplo, las 2 primeras)
+print(f"4. Las 2 primeras plataformas registradas en el CRM son: {PLATAFORMAS_VALIDAS[:2]}")
+print(f"5. La última plataforma registrada en el CRM es: {PLATAFORMAS_VALIDAS[-1]}")
+
+#P4 - Índice y conteo 
+plataforma_buscada = "Youtube"
+
+if plataforma_buscada in PLATAFORMAS_VALIDAS:
+    posicion = PLATAFORMAS_VALIDAS.index(plataforma_buscada)
+    # posicion es el índice real de Python (empieza en 0); se suma 1 solo para
+    # mostrarle al usuario por pantalla una numeración natural (empezando en 1)
+    print(f"6. La plataforma '{plataforma_buscada}' se encuentra en la posición: {posicion + 1}")
+else:
+    print(f"6. La plataforma '{plataforma_buscada}' no está registrada en el CRM.")
+    
+    
+#P5 - DESEMPAQUETADO de tupla con datos de un influencer (datos que no deben cambiarse)
+nuevo_influencer = ("Jorge Rojas", "Youtube", 450000, 6.5, "jorge@kizuna.com")
+print(f"\n7. Se agregó un nuevo influencer a la lista de influencers: {nuevo_influencer[0]}")
+
+nombre_inf, plataforma_inf, seguidores_inf, engagement_inf, email_inf = nuevo_influencer
+print(f"\n- Unpacking de la tupla del influencer: {nombre_inf}")
+print(f"  - Plataforma: {plataforma_inf:<12}")
+print(f"  - Seguidores: {seguidores_inf:<12}")
+print(f"  - Engagement: {engagement_inf:<12}")
+print(f"  - Email: {email_inf:<12}")
+
+#P6 - Conversión de tupla a lista para poder modificar datos y reconvertir a tupla para proteger los datos
+print(f"\n8. Modificando datos de la tupla del influencer: {nombre_inf}")
+temporary_list = list(nuevo_influencer)   # Convertir tupla a lista
+temporary_list[2] = 500000                # Modificar el número de seguidores 450 -> 500000
+nuevo_influencer = tuple(temporary_list)  # Convertir de nuevo a tupla
+print(f"  - Seguidores actualizado: {nuevo_influencer[2]:<12}") 
+
+#P7 - Concatenar el nuevo influencer a la lista de influencers (evitando duplicados por email)
+ya_existe = any(influencer[4] == nuevo_influencer[4] for influencer in influencers)
+if not ya_existe:
+    influencers.append(list(nuevo_influencer))  # Convertir tupla a lista para añadir a la lista de influencers
+    print(f"\n9. Influencer '{nuevo_influencer[0]}' añadido a la lista de influencers.")
+
+print("\n ===== Lista Final (6-Influencer añadido) ===== ")
+for i, influencer in enumerate(influencers):
+    print(f"{i+1}. {influencer[0]:<18} | {influencer[1]:<12}  | {influencer[3]:<6} | {influencer[2]:,} seg")
+    
+print('-' * 50)
