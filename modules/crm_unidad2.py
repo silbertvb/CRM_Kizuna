@@ -26,7 +26,7 @@ print(f"✅ Añadido: {nuevo_influencer[0]}")
 
 #Paso4 - Elimina uno por indice:
 eliminado = influencers.pop(1)  #elimina posición (1) Fernando 
-print(f"🗑️ Eliminado: {eliminado[0]}")
+print(f"🗑️-Eliminado: {eliminado[0]}")
 
 #Paso 5 - Muestra la lista final:
 print("\n --------- Lista Final (2)---------")
@@ -62,7 +62,7 @@ print("\n ===== Lista Final (3-con backup) ===== ")
 for i, influencer in enumerate(influencers):
     print(f"{i+1}. {influencer[0]:<18} | {influencer[1]:<12} | {influencer[2]:,} seg")
 print(f"\nTotal influencers: {len(influencers)}")
-
+print("-" * 50)
 
 #P3- Copia de seguridad antes de eliminar --
 influencers_backup = influencers.copy()
@@ -90,6 +90,7 @@ print("-" * 50)
 #=====================================================
 
 # P1- Métodos de cadenas aplicados al CRM 
+#Declaramos variables con los datos del primer influencer de la lista y aplicamos métodos de cadenas
 influencer = influencers[0]     # primer influencer de la lista
 nombre = influencer[0]          # Laura Pires
 plataforma = influencer[1]      # Youtube
@@ -187,6 +188,7 @@ nuevo_influencer = tuple(temporary_list)  # Convertir de nuevo a tupla
 print(f"  - Seguidores actualizado: {nuevo_influencer[2]:<12}") 
 
 #P7 - Concatenar el nuevo influencer a la lista de influencers (evitando duplicados por email)
+# comparamos el email del nuevo influencer con los emails de los influencers existentes para evitar duplicados
 ya_existe = any(influencer[4] == nuevo_influencer[4] for influencer in influencers)
 if not ya_existe:
     influencers.append(list(nuevo_influencer))  # Convertir tupla a lista para añadir a la lista de influencers
@@ -197,3 +199,102 @@ for i, influencer in enumerate(influencers):
     print(f"{i+1}. {influencer[0]:<18} | {influencer[1]:<12}  | {influencer[3]:<6} | {influencer[2]:,} seg")
     
 print('-' * 50)
+
+# ============================================
+# LECCIÓN 6: Sets aplicados al CRM
+# ============================================
+
+#P1. Plataformas únicas de los influencers (eliminando duplicados)
+plataformas_activas = ["Instagram", "Instagram", "Youtube", "Youtube"]
+plataformas_unicas = set(plataformas_activas)  # Convertimos la lista a un set para eliminar duplicados
+
+print(f"\n === Lección 6: Sets aplicados al CRM ===\n")
+# TODO: los sets no garantizan orden -> el resultado de join(plataformas_unicas)
+# puede salir en distinto orden en cada ejecución. Si algún día se necesita un
+# orden fijo (ej. alfabético), usar sorted(plataformas_unicas) en vez de iterar el set directo.
+print(
+    f"1. Actualmente {len(plataformas_activas)} influencers operan en solo "
+    f"{len(plataformas_unicas)} plataformas: {' y '.join(plataformas_unicas)}"
+)
+
+#P2. Añadir, actualizar, discartar y remover elementos de un set
+#1. Anadir un nuevo elemento al set de plataformas únicas
+nueva_plataforma = "Twitch"
+plataformas_unicas.add(nueva_plataforma)  # Añadir una nueva plataforma
+print(f"2. Se añadió '{nueva_plataforma}' a la lista. Quedando actualizada en: {' | '.join(plataformas_unicas)}")
+
+#2. Actualizar el set con varias plataformas nuevas (desordenadas y no se repiten)
+plataformas_nuevas = {"Linkedin", "Tiktok"}
+plataformas_unicas.update(plataformas_nuevas)
+print(
+    f"3. Se añadieron 2 nuevas plataformas: {' y '.join(plataformas_nuevas)}.\n"
+    f" - Quedando actualizada en: {' | '.join(plataformas_unicas)}")
+
+#3. Discard: eliminar un elemento del set (si existe, si no, no hace nada)
+plataforma_a_eliminar = "Facebook" #eliminamos un elemento que NO existe usando discard (evitando error)
+
+if plataforma_a_eliminar in plataformas_unicas:
+    plataformas_unicas.discard(plataforma_a_eliminar)
+    print(f"4. Se eliminó '{plataforma_a_eliminar}' del set.")
+else:
+    plataformas_unicas.discard(plataforma_a_eliminar)  # no hace nada, y no da error
+    print(f"4. '{plataforma_a_eliminar}' no estaba en el set — discard() no dio error.")
+
+#4. Remove: eliminar un elemento del set (si no existe, da error)
+plataforma_a_eliminar = "Twitch" #eliminamos un elemento que SI existe
+plataformas_unicas.remove(plataforma_a_eliminar)
+print(
+    f"5. Se eliminó '{plataforma_a_eliminar}' de la lista.\n"
+    f" - Quedando actualizada en: {' | '.join(plataformas_unicas)}")
+
+
+#5. Operaciones entre camcapanas (objetivo: identificar influencers que participan en varias campañas)
+campania_verano = {"Laura Pires", "Pedro Pascal", "Manuel Vega"}
+campania_navidad = {"Pedro Pascal", "Manuel Vega", "Jorge Rojas"}
+
+repitores_campanias = campania_verano & campania_navidad  #otra opcion seria: campania_verano.intersection(campania_navidad)
+print(
+    f"\n6. Los influencers que participaron en ambas campañas son: \n"
+    # el espacio va dentro de cada elemento (no en el separador) para que
+    # el "1." quede  con la misma sangría que el resto de las líneas
+    # 'u' es el usuario (nombre del influencer), 'i' es el índice de la enumeración
+    f"{'\n'.join([f' {i+1}.{u}' for i, u in enumerate(repitores_campanias)]) if repitores_campanias else ' Ninguno'}")
+
+no_repitieron = campania_verano - campania_navidad  #otra opcion seria: campania_verano.difference(campania_navidad)
+print(
+    f"\n7. Los influencers que solo participaron en la campaña de verano son: \n"
+    f"{'\n'.join([f' {i+1}.{u}' for i, u in enumerate(no_repitieron)]) if no_repitieron else ' Ninguno'}")
+
+todos = campania_verano | campania_navidad  #otra opcion seria: campania_verano.union(campania_navidad)
+print(
+    f"\n8. Los influencers que participaron en al menos una de las campañas son: \n"
+    f"{'\n'.join([f' {i+1}.{u}' for i, u in enumerate(todos)]) if todos else ' Ninguno'}")
+
+
+
+#6. Membership: verificar si un elemento pertenece al set
+usuario_buscado = "Laura Pires"
+if usuario_buscado in campania_navidad:  #la variable que se indica despues de 'in' debe ser donde se busca el elemento (en este caso, el set de la campaña de navidad)
+    print(f"\n9. '{usuario_buscado}' participó en la campaña de navidad.")
+else:
+    print(f"\n9. '{usuario_buscado}' no participó en la campaña de navidad.")
+
+#6. (bonus) - funcionalidad de pop() y creación de un set con tuplas dentro
+mercados = {("Instagram", "ES"), ("Youtube", "MX"), ("Tiktok", "BR")}
+
+# mercados es un set (sin orden ni índices), por eso no se puede usar mercados[0]/mercados[1];
+# para numerar cada tupla hay que iterar con enumerate() dentro de una list comprehension
+print(
+    f"\n10. Actualmente hay {len(mercados)} mercados activos:\n "
+    + "\n ".join([f"{i+1}.{t[0]} ({t[1]})" for i, t in enumerate(mercados)])
+)
+
+mercado_eliminado = mercados.pop()  # pop() elimina un elemento aleatorio del set
+print(f"\n11. Se eliminó el mercado: {mercado_eliminado[0]} ({mercado_eliminado[1]})")
+
+print(
+    f"\n12. La lista actualizada contiene {len(mercados)} mercados activos:\n "
+    + "\n ".join([f"{i+1}.{t[0]} ({t[1]})" for i, t in enumerate(mercados)])
+)
+
+print("-" * 50)
