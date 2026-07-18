@@ -297,4 +297,80 @@ print(
     + "\n ".join([f"{i+1}.{t[0]} ({t[1]})" for i, t in enumerate(mercados)])
 )
 
+print("-" * 50)  
+
+# ============================================
+# LECCIÓN 7: Literales aplicados al CRM
+# ============================================
+print(f"\n === Lección 7: Literales aplicados al CRM ===\n")
+
+#P1 - Literales numéricos: hexadecimal y binario
+color_corporativo = 0xE84393     # color rosa Kizuna en hexadecimal
+permisos_admin = 0b1111          # 4 permisos: leer|escribir|editar|borrar
+permisos_becario = 0b0001        # solo 1 permiso: lectura
+
+print(f"1. Color corporativo (hex 0xE84393) como entero: {color_corporativo}")
+print(f"   Y de vuelta a hex para el diseñador: {hex(color_corporativo)}")
+print(f"2. Permisos admin (0b1111) = {permisos_admin} | becario (0b0001) = {permisos_becario}")
+
+
+# P2 - Literal multilínea: menú de bienvenida del CRM
+# Guardamos el menú en una variable utilizando triple comilla para poder reutilizarlo en otras partes del programa
+menu_crm = """
+╔══════════════════════════════╗
+║      CRM KIZUNA v1.0         ║
+║  1. Ver influencers          ║
+║  2. Añadir influencer        ║
+║  3. Campañas activas         ║
+║  4. Perfil                   ║
+║  5. Salir                    ║
+╚══════════════════════════════╝"""
+print(f"3. El menú del CRM es:\n{menu_crm}")
+
+
+# P3 - Raw string: ruta de exportación de informes
+ruta_normal = "C:\nuevos_informes\tabla_influencers"  #sin r se rompe la ruta por el \n y \t (salto de línea y tabulación)
+ruta_raw = r"C:\nuevos_informes\tabla_influencers"    #con r se toma la ruta tal cual (forma correcta)
+
+print(f"4. Ruta SIN raw string:{ruta_normal} -- (ruta rota)")
+print(f"   Ruta CON raw string (correcta): {ruta_raw}")
+
+
+# P4 - Literales booleanos y truthy/falsy (ejercicio de los clientes):
+#      → recorrer solo los activos
+#      → "CON ventas"/"SIN ventas" usando la lista como condición
+
+clientes = [
+    ["GameZone", True, [1200.50, 850.00]],    # nombre, activo, lista de ventas
+    ["TechShop", False, [500.00]],            # inactivo con ventas
+    ["ModaStyle", True, []],                  # activo pero sin ventas
+]
+
+print("\n5. Informe de clientes activos:")
+for nombre, activo, ventas in clientes:      # unpacking, como en la Lección 5
+    if activo:                               # True/False directo como condición
+        estado_ventas = "CON ventas" if ventas else "SIN ventas"   # lista como condición
+        print(f"   - {nombre}: {estado_ventas}")
+
+# - Suma de booleanos: sum() de True/False para contar cuántos clientes activos hay
+print(f"\n   Clientes activos: {sum(activo for _, activo, _ in clientes)}")
+
+
+# P5 - None: fecha_ultima_campania = None con 'is None'
+fecha_ultima_campania = None  # None simula que aún no se ha lanzado ninguna campaña este trimestre
+
+if fecha_ultima_campania is None:
+    print("\n6. ⚠️: Aún no se ha lanzado ninguna campaña este trimestre.")
+else:
+    print(f"\n6. Última campaña: {fecha_ultima_campania}")
+
+#P6 - Float científico: presupuesto anual
+presupuesto = 1.5e6  #e6 significa los ceros que siguen al 1.5 x 1.000.000 (1.500.000)
+print(f"\n7. Presupuesto anual de campañas: {presupuesto:,.2f} €")
+
+
+# P7 - Complejo: demo de 44.76j (y por qué no lo usarás en el CRM)
+numero_complejo = 44.76j
+print(f"\n8. Literal complejo: {numero_complejo} | tipo: {type(numero_complejo).__name__}")
+print("   (Los complejos sirven para ingeniería/señales, ❌ no para un CRM).")
 print("-" * 50)
