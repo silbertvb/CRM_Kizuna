@@ -1,5 +1,15 @@
-# CRM_Kizuna - Módulo 1
-# Ficha de influencer - declaramos variables (nombre, plataforma, seguidores, engagement, email) y mostramos por pantalla
+"""
+CRM Kizuna — Unidad 1, Lección 1: Ficha de influencer
+Certificación: IT Specialist Python (INF-303)
+
+Ejercicios:
+  1. Ficha de influencer — (variables, f-strings, alineación :<, separador de miles :,)
+  2. Solicitud de datos por teclado — (input, conversión de tipos, str.replace)
+"""
+
+# --- Ejercicio/Lección 1 — Ficha de influencer ---
+# Qué hace: declara los datos de un influencer y los muestra formateados por pantalla
+# Practica: variables, f-strings, alineación (:<), separador de miles (:,)
 
 nombre = "Laura Pérez"
 plataforma = "Instagram"
@@ -15,7 +25,9 @@ print(f"{' Engagement:':<12} {engagement}%")     # sin indicar el tipo de dato, 
 print(f"{' Email:':<12} {email}")
 print("-" * 30)                                  # se usa "-" * X (veces que se repite el caracter)
 
-# Tarea 2. Solicita por pantalla los datos del influencer con conversion de tipos
+# --- Ejercicio/Lección 2 — Solicitud de datos por teclado ---
+# Qué hace: pide por teclado los datos de un influencer y convierte los tipos antes de mostrarlos
+# Practica: input(), conversión de tipos (int, float), str.replace()
 nombre1 = input("Introduce Nombre y Apellido: ")
 plataforma1 = input("Introduce tu plataforma: ")
 seguidores1 = input("Introduce tus seguidores: ")

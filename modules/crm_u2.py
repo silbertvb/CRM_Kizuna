@@ -1,7 +1,18 @@
-# ============================================
-# LECCIÓN 2: Creacion de lista 
-# ============================================
+"""
+CRM Kizuna — Unidad 2, Lecciones 2-7: Listas, tuplas, sets y literales
 
+Lecciones:
+  2. Creación de lista — (listas anidadas, append, pop, enumerate)
+  3. Técnicas de manipulación — (concatenación, insert, copy, pop)
+  4. Ordenar y buscar en listas — (métodos de cadenas: len, upper, lower, find, replace, split, join, in)
+  5. Tuplas — (inmutabilidad, slicing, index, desempaquetado, conversión tupla-lista)
+  6. Sets aplicados al CRM — (duplicados, add, update, discard, remove, operaciones de conjuntos)
+  7. Literales aplicados al CRM — (hex, bin, multilínea, raw string, bool, None, float científico, complejo)
+"""
+
+# --- Lección 2 — Creación de lista ---
+# Qué hace: crea una lista anidada de influencers, la muestra numerada, añade y elimina elementos
+# Practica: listas anidadas, append(), pop(), enumerate(), f-strings
 
 #Paso1- Definición de una Lista anidada de influencers 
 """Cada influencer es una lista con 5 datos dentro de la lista principal
@@ -35,9 +46,10 @@ for i, influencer in enumerate(influencers):
 print(f"\nTotal influencers: {len(influencers)}")
 
 
-# ============================================
-# LECCIÓN 3: Técnicas de manipulación
-# ============================================
+# --- Ejercicio/Lección 3 — Técnicas de manipulación ---
+# Qué hace: concatena listas, inserta en una posición concreta y crea una copia de seguridad antes de eliminar
+# Practica: concatenación de listas (+), insert(), copy(), pop()
+
 
 print(f"\n === Lección 3: Técnicas de manipulación CRM ===")
 #P1- Concatenación de listas--
@@ -85,9 +97,10 @@ print(f"\n 1.Primer influencer en backup: {influencers_backup[0][0]}")
 print(f" 2.Primer influencer original: {influencers[0][0]}")
 print("-" * 50)
 
-#=====================================================
-# LECCIÓN 4: Ordenar y buscar en listas
-#=====================================================
+# --- Lección 4 — Ordenar y buscar en listas ---
+# Qué hace: aplica métodos de cadenas sobre los datos de un influencer para normalizar y consultar información
+# Practica: len(), upper(), lower(), find(), replace(), split(), join(), operador in
+
 
 # P1- Métodos de cadenas aplicados al CRM 
 #Declaramos variables con los datos del primer influencer de la lista y aplicamos métodos de cadenas
@@ -133,9 +146,10 @@ if email_actualizado.endswith("@kizuna.com"):
     
 print("-" * 50)
 
-# ============================================
-# LECCIÓN 5: Tuplas 
-# ============================================                          
+# --- Lección 5 — Tuplas ---
+# Qué hace: define las plataformas válidas como tupla, las valida y recorre, y desempaqueta los datos de un influencer
+# Practica: tuplas inmutables, slicing, index(), desempaquetado, conversión tupla↔lista
+                         
 print(f"\n === Lección 5: Tuplas ===\n")
 
 #P1 - Definición de una Tupla aplicada al CRM (datos que no se cambiaran)
@@ -200,9 +214,10 @@ for i, influencer in enumerate(influencers):
     
 print('-' * 50)
 
-# ============================================
-# LECCIÓN 6: Sets aplicados al CRM
-# ============================================
+# --- Lección 6 — Sets aplicados al CRM ---
+# Qué hace: elimina duplicados de plataformas y calcula intersección, diferencia y unión entre campañas
+# Practica: set(), add(), update(), discard(), remove(), operadores &, -, |, pop()
+
 
 #P1. Plataformas únicas de los influencers (eliminando duplicados)
 plataformas_activas = ["Instagram", "Instagram", "Youtube", "Youtube"]
@@ -299,9 +314,10 @@ print(
 
 print("-" * 50)  
 
-# ============================================
-# LECCIÓN 7: Literales aplicados al CRM
-# ============================================
+# --- Lección 7 — Literales aplicados al CRM ---
+# Qué hace: muestra distintos tipos de literales de Python aplicados a datos del CRM
+# Practica: hex, bin, strings multilínea, raw strings, booleanos/truthy-falsy, None, float científico, números complejos
+
 print(f"\n === Lección 7: Literales aplicados al CRM ===\n")
 
 #P1 - Literales numéricos: hexadecimal y binario
